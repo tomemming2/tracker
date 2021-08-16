@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/utils.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="scripts/script.js"></script>
-    <script src="scripts/accordeon.js"></script>
 
 
     <title>Weight Tracker | Tom Emming</title>
@@ -22,20 +21,42 @@
 <section class="header">
     <div class="header flex">
         <div class="header-info">
-            <h1 class="text-center lg">Fitness BMI Tracker</h1>
+            <h1 class="text-center lg">BMI Calculator</h1>
             <p class="lead">Quickly calulate your BMI, TDEE and BMR</p>
         </div>
-        <div class="header-form card">
+    </div>
+</section>
+
+<!-- body -->
+<section">
+    <div class="body card">
+        <div class="input-form-header">
+            <h1>Calculate your BMI, TDEE and BMR</h1>
+            <h3>Want to find out if you currently have a healthy weight? Fill out the form below and find out.</h3>
+        </div>
+        <div class="input-form text-center">
             <form id='input-form'>
                 <div class="form-control">
-                    <input type="text" id="height" placeholder="Height" required>
+                    <span class='form-title'>Gender:</span><span class="asterix">*</span>
+                    <input type="radio" name="gender" id="gender" value="male" required>Male
+                    <input type="radio" name="gender" id="gender" value="female" required>Female
                 </div>
-                <div class="form-control">
-                    <input type="text" id="weight" placeholder="Weight" required>
+                <div class="form-control slidecontainer">
+                    <span class='form-title'>Height:</span><span class="asterix">*</span>
+                    <input type="range" min="75" max="225" value="150" id="heightInput" class="slider"> 
+                    <input type="text" name="height" id="heightOutput" required>
                 </div>
-                <div class="form-control">
-                    <input type="text" id="age" placeholder="Age" required>
+                <div class="form-control slidecontainer">
+                    <span class='form-title'>Weight:</span><span class="asterix">*</span>
+                    <input type="range" min="5" max="250" value="60" name="weight" id="weightInput" class="slider" id="myRange" required>
+                    <input type="text" name="height" id="weightOutput" required>
                 </div>
+                <div class="form-control slidecontainer">
+                    <span class='form-title'>Age:</span><span class="asterix">*</span>
+                    <input type="range" min="1" max="110" value="30" name="age" id="ageInput" class="slider" id="myRange" required>
+                    <input type="text" name="height" id="ageOutput" required>
+                </div>
+                <span class='form-title'>Activity:</span><span class="asterix">*</span>
                 <div class="form-control">
                     <input type="radio" name="activity" id="activity" value="1.375" required>Lightly active
                 </div>
@@ -45,105 +66,137 @@
                 <div class="form-control">
                     <input type="radio" name="activity" id="activity" value="1.725" required>Very active
                 </div>
-
-                <div class="form-control">
-                    <input type="radio" name="gender" id="gender" value="male" required>Male
-                    <input type="radio" name="gender" id="gender" value="female" required>Female
-                </div>
                 <input type="submit" class="btn btn-primary text-center;" value="Calculate">
             </form>
         </div>
-    </div>
-</section>
+
 
 <!-- Result -->
-<section>
-    <div id="result" class="flex result card">            
-        <table cellspacing="0" cellpadding="0">
-            <tr>
-                <th class='md p-2'>BMI</th>
-                <th class='md p-2'>TDEE</th>
-                <th class='md p-2'>BMR</th>
+        <section>
+            <div id="result" class="result grid grid-3">
+                <div class="card text-center">
+                    <h1>Your BMI</h1>
+                    <div id='bmi-result-card' class="result-card">
+                        <p id="bmi-value">25</p>
+                    </div>
+                    <p id="bmi-result-text" class="lead"></p>
+                </div>
+                <div class="card text-center">
+                    <h1>Your TDEE</h1>
+                    <div class="result-card">
+                        <p id="tdee-value">1800</p>
+                    </div>
+                    <p class="lead tdee-result-text">TDEE stands for total daily energy expenditure. It is the total energy that a person uses in a day.</p>
+                </div>
+                <div class="card text-center">
+                    <h1>Your BMR</h1>
+                    <div class="result-card">
+                        <p id="bmr-value">2400</p>
+                    </div>
+                    <p class="lead bmr-result-text">BMR is a person's energy usage rate while at rest in a temperate environment when the digestive system is inactive.</p>
 
-            </tr>
-            <tr>
-                <td class='lead p-2' id="bmi-value">BMI Value</td>
-                <td class='lead p-2' id="tdee-value">TDEE Value</td>
-                <td class='lead p-2' id="bmr-value">BMR Value</td>
-            </tr>
-        </table>
-    </div>
-</section>
+                </div>
+            </div>
+        </section>
 
 <!-- explanation -->
-<section>
-    <div class="explanation flex card">
-        <div class="explanation intro">
-            <h2 class='md text-center'>What are BMI, TDEE and BMR?</h3>
-            <button  class="accordeon">Body Mass Index (BMI)</button>
-            <div class="panel">
-                <p>Body Mass Index (BMI) is a person’s weight in kilograms divided by the square of height in meters. A high BMI can indicate high body fatness. BMI screens for weight categories that may lead to health problems, but it does not diagnose the body fatness or health of an individual.</p>   
-            </div>
-            <button class="accordeon">Total Daily Energy Expenditure (TDEE)</button>
-            <div class="panel">
-                <p>Your Total Daily Energy Expenditure (TDEE) is an estimation of how many calories you burn per day when exercise is taken into account. It is calculated by first figuring out your Basal Metabolic Rate, then multiplying that value by an activity multiplier.
+        <section>
+            <div class="explanation intro">
+                <h1 class='md'>What are BMI, TDEE and BMR?</h1>
+                <h2 class='lead'>Body Mass Index (BMI)</h2>
+                    <p>Body Mass Index (BMI) is a person’s weight in kilograms
+                    divided by the square of height in meters.
+                    A high BMI can indicate high body fatness. 
+                    BMI screens for weight categories that may lead to
+                    health problems, but it does not diagnose the
+                    body fatness or health of an individual.</p>
+                    <div class="grid grid-4 bmi">
+                        <div class="bmi-card-1">
+                            <p class="lead">Underweight</p>
+                            <p class="lead">Below 18,5</p>
+                        </div>
+                        <div class="bmi-card-2">
+                            <p class="lead">Healthy</p>
+                            <p class="lead">18,5 - 25</p>
+                        </div>
+                            <div class="bmi-card-3">
+                                <p class="lead">Overweight</p>
+                                <p class="lead">25 - 30</p>
+                            </div>
+                            <div class="bmi-card-4">
+                                <p class="lead">Obese</p>
+                                <p class="lead">Above 30</p>
+                            </div>
+                        </div> 
 
-                    Since your BMR represents how many calories your body burns when at rest, it is necessary to adjust the numbers upwards to account for the calories you burn during the day. This is true even for those with a sedentary lifestyle. Our TDEE calculator uses the best formulas and displays your score in a way that's easy to read and meaningful</p>   
+                <div class="grid grid-2 bmr">
+                    <div class="bmr-text">
+                        <h2 class='lead'>Basal metabolic rate (BMR)</h2>
+                            <p> 
+                            Even when resting, your body burns calories
+                            by performing basic functions to sustain life, such as:<br>
+                            <ul>
+                                <li>- breathing</li>
+                                <li>- circulation</li>
+                                <li>- nutrient processing</li>
+                                <li>- cell production</li>
+                            </ul>
+                            Basal Metabolic Rate is the number of calories
+                            your body needs to accomplish its most basic
+                            (basal) life-sustaining functions.</p>
+                     </div>
+                     <div class="bmr-img">
+                         <img src="images/bmr.jpg" alt="">
+                     </div>
+                </div>
+                <h2 class='lead'>Total Daily Energy Expenditure (TDEE)</h2>
+                    <p>Your Total Daily Energy Expenditure (TDEE) is an
+                    estimation of how many calories you burn per day when
+                    exercise is taken into account.
+                    It is calculated by first figuring out your Basal Metabolic Rate (BMR),
+                    then multiplying that value by an activity multiplier.
+                    Since your BMR represents how many calories your body
+                    burns when at rest, it is necessary to adjust the numbers
+                    upwards to account for the calories you burn during the day.
+                    This is true even for those with a sedentary lifestyle.
+                    </p>   
+
+                </div>
+
+                </div>
             </div>
-            <button class="accordeon">Basal metabolic rate (BMR)</button>
-            <div class="panel">
-                <p> 
-                    Even when resting, your body burns calories by performing basic functions to sustain life, such as:<br>
-                    <ul>
-                    <li>breathing</li>
-                    <li>circulation</li>
-                    <li>utrient processing</li>
-                    <li>cell production</li>
-                    </ul><br>
-                    Basal metabolic rate is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions.</p>   
-            </div>
-        </div>
-        <div id="explanation" class="card">         
-            <table cellspacing="0" cellpadding="0">
-                <tr>
-                    <th class='md p-2'>BMI Limits</th>
-                    <th class='md p-2'>Meaning</th>
-                </tr>
-                <tr>
-                    <td class='p-2'>Lower then 18.5</td>
-                    <td style='color: orange;'class='p-2'>Underweight</td>
-                </tr>
-                <tr>
-                    <td class='p-2'>Between 18.5 and 25</td>
-                    <td style='color: green;'class='p-2'>Healthy weight</td>
-                </tr>
-                <tr>
-                    <td class='p-2'>Between 25 and 30</td>
-                    <td style='color: orange;'class='p-2'>Overweight</td>
-                </tr>
-                <tr>
-                    <td class='p-2'>30 and up</td>
-                    <td style='color: red;'class='p-2'>Severe overweight (obese)</td>
-                </tr>
-            </table>
-        </div>
+        </section>
+
     </div>
 </section>
 <script>
-var acc = document.getElementsByClassName("accordeon");
-var i;
+// Sliders
+var heightSlider = document.getElementById("heightInput"); // The height slider
+var heightOutput = document.getElementById("heightOutput"); // The height output
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-        panel.style.display = "none";
-    } else {
-        panel.style.display = "block";
-    }
-    });
+var weightSlider = document.getElementById("weightInput"); // The weight slider
+var weightOutput = document.getElementById("weightOutput"); // The weight output
+
+var ageSlider = document.getElementById("ageInput"); // The age slider
+var ageOutput = document.getElementById("ageOutput"); // The age output
+
+heightOutput.value = heightSlider.value; // Set the default value height
+weightOutput.value = weightSlider.value; // Set the default value weight
+ageOutput.value = ageSlider.value; // Set the default value age
+
+heightSlider.oninput = function() {
+    heightOutput.value = this.value; // Set new output value after moving slider
 }
+
+weightSlider.oninput = function() {
+    weightOutput.value = this.value; // Set new output value after moving slider
+}
+
+ageSlider.oninput = function() {
+    ageOutput.value = this.value; // Set new output value after moving slider
+}
+
+
 </script>
 </body>
 </html>

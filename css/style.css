@@ -6,6 +6,7 @@
     --secondary-color: #6f2232;
     --dark-color: #6f2232;
     --light-color: #f4f4f4;
+    --dark-text-color: ##313131;
 }
 
 * {
@@ -15,13 +16,18 @@
 }
 
 body {
-    color: #333;
+    color: var(--dark-text-color);
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
 }
 
 a {
     text-decoration: none;
+}
+
+li {
+    list-style: none;
+
 }
 
 
@@ -43,19 +49,52 @@ td {
 }
 
 .header {
-    height: 400px;
+    height: 200px;
     width: auto;
     background-color: var(--primary-color);
+    /* background-image: url(images/background.png); */
     justify-content: space-around;
     color: var(--light-color);
 }
 
-.header-form input[type='text'] {
-    border: 0;
-    border-bottom: 1px solid var(--secondary-color);
+.header-info {
+    animation: slideInFromLeft 1s ease-in;
+}
+
+.input-form-header  {
+    border-bottom: var(--primary-color) 2px solid;
+    padding-bottom: 10px;
+    animation: slideInFromRight 1s ease-in;
+    font-weight: bold;
+}
+
+.input-form {
     width: 100%;
-    padding: 3px;
-    font-size: 16px;
+    text-align: left;
+    animation: slideInFromRight 1s ease-in;
+    padding: 20px;
+}
+
+.input-form input[type='text'] {
+    width: 30px;
+    font-size: 15px;
+}
+
+.input-form input[type='radio'] {
+    padding-right: 25px;
+}
+
+.form-title {
+    font-size: 20px;
+    width: 100px;
+    font-weight: bold;
+}
+
+.asterix {
+    font-size: 24px;
+    color: var(--primary-color);
+    padding-right: 5px;
+    font-weight: bold;
 }
 
 input[type='radio']:checked:after {
@@ -65,7 +104,7 @@ input[type='radio']:checked:after {
     top: -3px;
     left: -4px;
     position: relative;
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
     content: '';
     display: inline-block;
     visibility: visible;
@@ -75,32 +114,138 @@ input[type='radio']:checked:after {
 
 .result {
     display: none;
+    animation: slideInFromBottom 1s ease-in;
 }
 
-.accordeon {
-    background-color: var(--dark-color);
-    color: var(--light-color);
-    cursor: pointer;
-    padding: 20px;
-    width: 100%;
-    border: none;
+.result .card {
+    background-color: #313131;
+    color: white;
+}
+
+.result .card h1 {
+    border-bottom: var(--primary-color) 2px solid;
+}
+
+.result .result-card {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.explanation {
+    animation: slideInFromBottom 2s ease-in;  
+
+}
+
+.explanation h2 {
+    padding-bottom: 10px;
+    padding-top: 15px;
+}
+
+.explanation .bmi {
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
-    outline: none;
-    font-size: 24px;
-    transition: 0.4s;
-    justify-self: left;
-  }
-  
-.active, .accordeon:hover {
-    background-color: var(--primary-color); 
-  }
-  
-.panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-    overflow: hidden;
-    padding: 40px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.result .card {
+    max-width: 400px;
+    width: 100%;
+}
+
+.result .grid {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.explanation  .grid {
+    gap: 0px;
+    max-width: 600px;
     width: auto;
-    max-width: 750px;
+}
+
+.explanation .bmi .bmi-card-1 {
+    background-color: orange;
+    max-width: 150px;
+    width: 100%;
+}
+.explanation .bmi .bmi-card-2 {
+    background-color: green;
+    max-width: 150px;
+    width: 100%;
+}
+.explanation .bmi .bmi-card-3 {
+    background-color: orange;
+    max-width: 150px;
+    width: 100%;
+}
+.explanation .bmi .bmi-card-4 {
+    background-color: var(--primary-color);
+    max-width: 150px;
+    width: 100%;
+}
+
+.explanation .bmr-text {
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+.explanation .bmr-img img{
+    width: 100%;
+    height: 300px;
+    max-width: 400px;
+    padding: 40px;
+}
+
+  
+  /* The slider itself */
+  .slider {
+    appearance: none;
+    width: auto; /* Full-width */
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
   }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: var(--primary-color); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: var(--primary-color); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+  @media(max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+
+    .cli .grid > *:first-child {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}
