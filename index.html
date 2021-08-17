@@ -28,7 +28,7 @@
 </section>
 
 <!-- body -->
-<section">
+<section>
     <div class="body card">
         <div class="input-form-header">
             <h1>Calculate your BMI, TDEE and BMR</h1>
@@ -42,12 +42,12 @@
                     <input type="radio" name="gender" id="gender" value="female" required>Female
                 </div>
                 <div class="form-control slidecontainer">
-                    <span class='form-title'>Height:</span><span class="asterix">*</span>
+                    <span class='form-title'>Height (CM):</span><span class="asterix">*</span>
                     <input type="range" min="75" max="225" value="150" id="heightInput" class="slider"> 
                     <input type="text" name="height" id="heightOutput" required>
                 </div>
                 <div class="form-control slidecontainer">
-                    <span class='form-title'>Weight:</span><span class="asterix">*</span>
+                    <span class='form-title'>Weight (KG):</span><span class="asterix">*</span>
                     <input type="range" min="5" max="250" value="60" name="weight" id="weightInput" class="slider" id="myRange" required>
                     <input type="text" name="height" id="weightOutput" required>
                 </div>
@@ -129,7 +129,7 @@
                             </div>
                         </div> 
 
-                <div class="grid grid-2 bmr">
+                <div class="bmr">
                     <div class="bmr-text">
                         <h2 class='lead'>Basal metabolic rate (BMR)</h2>
                             <p> 
@@ -188,8 +188,21 @@ heightSlider.oninput = function() {
     heightOutput.value = this.value; // Set new output value after moving slider
 }
 
+heightOutput.oninput = function() {
+    heightSlider.value = this.value; // Set new output value after moving slider
+}
+
+weightOutput.oninput = function() {
+    weightSlider.value = this.value; // Set new output value after moving slider
+}
+
+
 weightSlider.oninput = function() {
     weightOutput.value = this.value; // Set new output value after moving slider
+}
+
+ageOutput.oninput = function() {
+    ageSlider.value = this.value; // Set new output value after moving slider
 }
 
 ageSlider.oninput = function() {
